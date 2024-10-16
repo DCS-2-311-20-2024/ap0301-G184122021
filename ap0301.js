@@ -52,15 +52,19 @@ function init() {
     camera.position.z = param.z;
     camera.lookAt(0, 0, 0);
     camera.updateProjectionMatrix();
+    //ロボットの動き
+    robot.rotation.y
+    = (robot.rotation.y + 0.01) % (2* Math.PI);
     renderer.render(scene, camera);
+    requestAnimationFrame(render);
   }
 
   // カメラのコントローラ
   const gui = new GUI();
-  gui.add(param, "fov", 10, 100).onChange(render);
-  gui.add(param, "x", -50, 50).onChange(render);
-  gui.add(param, "y", -50, 50).onChange(render);
-  gui.add(param, "z", -50, 50).onChange(render);
+  gui.add(param, "fov", 10, 100)
+  gui.add(param, "x", -50, 50)
+  gui.add(param, "y", -50, 50)
+  gui.add(param, "z", -50, 50)
   
   // 描画
   render();
